@@ -51,4 +51,5 @@ public:
 	afx_msg void Equal();
 	afx_msg void Clear();
 	afx_msg void Clean();
+	CListBox _List;
 };

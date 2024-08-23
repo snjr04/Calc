@@ -13,7 +13,7 @@
 #define new DEBUG_NEW
 #endif
 
-CString sVvod = L"0";
+CString sVvod;
 CString sNum1;
 CString sNum2;
 
@@ -73,6 +73,7 @@ void CLimCalcDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_EDIT1, _Edit);
+	DDX_Control(pDX, IDC_LIST1, _List);
 }
 
 BEGIN_MESSAGE_MAP(CLimCalcDlg, CDialogEx)
@@ -410,28 +411,44 @@ void CLimCalcDlg::Division()
 
 void CLimCalcDlg::Equal()
 {
+	double ravno = 0;
+	CString sList;
 	num2 = _wtof(sVvod);
 
-	if (iDeistvie == 1) 
-		num1 = num1 + num2;
+	if (iDeistvie == 1)
+	{
+		ravno = num1 + num2;
+		sList.Format(L"%g + %g = %g", num1, num2, ravno);
+	}
 	if (iDeistvie == 2)
-		num1 = num1 - num2;
-	if (iDeistvie == 3) 
-		num1 = num1 * num2;
+	{
+		ravno = num1 - num2;
+		sList.Format(L"%g - %g = %g", num1, num2, ravno);
+	}
+	if (iDeistvie == 3)
+	{
+		ravno = num1 * num2;
+		sList.Format(L"%g * %g = %g", num1, num2, ravno);
+	}
 	if (iDeistvie == 4)
 	{
 		if (num2 == 0)
 		{
 			AfxMessageBox(L"Тупица на ноль не деится!");
+			sList.Format(L"%g / %g = Ты тупой", num1, num2);
 		}
 		else
 		{
-			num1 = num1 / num2;
+			ravno = num1 / num2;
+			sList.Format(L"%g / %g = %g", num1, num2, ravno);
 		}
 	}
 
-	sVvod.Format(L"%g", num1);
+	sVvod.Format(L"%g", ravno);
 	_Edit.SetWindowTextW(sVvod);
+	_List.AddString(sList);
+	bPodschet = 0;
+	bdeistvie = 1;
 }
 
 
