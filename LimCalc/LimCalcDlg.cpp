@@ -13,11 +13,13 @@
 #define new DEBUG_NEW
 #endif
 
-CString sVvod;
+CString sVvod = L"0";
 CString sNum1;
 CString sNum2;
 
 bool bTochka = 0;
+bool bdeistvie = 0;
+bool bPodschet = 0;
 
 double num1 = 0;
 double num2 = 0;
@@ -187,9 +189,10 @@ HCURSOR CLimCalcDlg::OnQueryDragIcon()
 
 void CLimCalcDlg::OnBnClickedButton1()
 {
-	if (sVvod == L"0")
+	if (sVvod == L"0" || bdeistvie == 1)
 	{
 		sVvod = L"1";
+		bdeistvie = 0;
 	}
 	else {
 		sVvod.Append(L"1");
@@ -200,9 +203,10 @@ void CLimCalcDlg::OnBnClickedButton1()
 
 void CLimCalcDlg::OnBnClickedButton2()
 {
-	if (sVvod == L"0")
+	if (sVvod == L"0" || bdeistvie == 1)
 	{
 		sVvod = L"2";
+		bdeistvie = 0;
 	}
 	else {
 		sVvod.Append(L"2");
@@ -213,9 +217,10 @@ void CLimCalcDlg::OnBnClickedButton2()
 
 void CLimCalcDlg::OnBnClickedButton3()
 {
-	if (sVvod == L"0")
+	if (sVvod == L"0" || bdeistvie == 1)
 	{
 		sVvod = L"3";
+		bdeistvie = 0;
 	}
 	else {
 		sVvod.Append(L"3");
@@ -226,9 +231,10 @@ void CLimCalcDlg::OnBnClickedButton3()
 
 void CLimCalcDlg::OnBnClickedButton4()
 {
-	if (sVvod == L"0")
+	if (sVvod == L"0" || bdeistvie == 1)
 	{
 		sVvod = L"4";
+		bdeistvie = 0;
 	}
 	else {
 		sVvod.Append(L"4");
@@ -239,9 +245,10 @@ void CLimCalcDlg::OnBnClickedButton4()
 
 void CLimCalcDlg::OnBnClickedButton5()
 {
-	if (sVvod == L"0")
+	if (sVvod == L"0" || bdeistvie == 1)
 	{
 		sVvod = L"5";
+		bdeistvie = 0;
 	}
 	else {
 		sVvod.Append(L"5");
@@ -252,9 +259,10 @@ void CLimCalcDlg::OnBnClickedButton5()
 
 void CLimCalcDlg::OnBnClickedButton6()
 {
-	if (sVvod == L"0")
+	if (sVvod == L"0" || bdeistvie == 1)
 	{
 		sVvod = L"6";
+		bdeistvie = 0;
 	}
 	else {
 		sVvod.Append(L"6");
@@ -265,9 +273,10 @@ void CLimCalcDlg::OnBnClickedButton6()
 
 void CLimCalcDlg::OnBnClickedButton7()
 {
-	if (sVvod == L"0")
+	if (sVvod == L"0" || bdeistvie == 1)
 	{
 		sVvod = L"7";
+		bdeistvie = 0;
 	}
 	else {
 		sVvod.Append(L"7");
@@ -277,9 +286,10 @@ void CLimCalcDlg::OnBnClickedButton7()
 
 void CLimCalcDlg::OnBnClickedButton8()
 {
-	if (sVvod == L"0")
+	if (sVvod == L"0" || bdeistvie == 1)
 	{
 		sVvod = L"8";
+		bdeistvie = 0;
 	}
 	else {
 		sVvod.Append(L"8");
@@ -290,9 +300,10 @@ void CLimCalcDlg::OnBnClickedButton8()
 
 void CLimCalcDlg::OnBnClickedButton9()
 {
-	if (sVvod == L"0")
+	if (sVvod == L"0" || bdeistvie == 1)
 	{
 		sVvod = L"9";
+		bdeistvie = 0;
 	}
 	else {
 		sVvod.Append(L"9");
@@ -303,9 +314,10 @@ void CLimCalcDlg::OnBnClickedButton9()
 
 void CLimCalcDlg::OnBnClickedButton10()
 {
-	if (sVvod == L"0")
+	if (sVvod == L"0" || bdeistvie == 1)
 	{
 		sVvod = L"0";
+		bdeistvie = 0;
 	}
 	else {
 	sVvod.Append(L"0");
@@ -327,38 +339,72 @@ void CLimCalcDlg::OnBnClickedButton13()
 
 void CLimCalcDlg::Plus()
 {
-	num1 = _wtof(sVvod);
+	if (bPodschet == 1)
+	{
+		Equal();
+	}
+	else
+	{
+		num1 = _wtof(sVvod);
+	}
+	
 	iDeistvie = 1;
-	sVvod = L"";
+	bdeistvie = 1;
 	bTochka = 0;
-	std::cout << sVvod;
+	bPodschet = 1;
 
 }
 
 
 void CLimCalcDlg::Minus()
 {
-	num1 = _wtof(sVvod);
+	if (bPodschet == 1)
+	{
+		Equal();
+	}
+	else
+	{
+		num1 = _wtof(sVvod);
+	}
 	iDeistvie = 2;
-	sVvod = L"";
+	bdeistvie = 1;
 	bTochka = 0;
+	bPodschet = 1;
 }
 
 
 void CLimCalcDlg::multiplication()
 {
-	num1 = _wtof(sVvod);
+	if (bPodschet == 1)
+	{
+		Equal();
+	}
+	else
+	{
+		num1 = _wtof(sVvod);
+	}
+	
 	iDeistvie = 3;
-	sVvod = L"";
-
+	bdeistvie = 1;
+	bTochka = 0;
+	bPodschet = 1;
 }
 
 
 void CLimCalcDlg::Division()
 {
-	num1 = _wtof(sVvod);
+	if (bPodschet == 1)
+	{
+		Equal();
+	}
+	else
+	{
+		num1 = _wtof(sVvod);
+	}
 	iDeistvie = 4;
-	sVvod = L"";
+	bdeistvie = 1;
+	bTochka = 0;
+	bPodschet = 1;
 }
 
 
@@ -372,9 +418,17 @@ void CLimCalcDlg::Equal()
 		num1 = num1 - num2;
 	if (iDeistvie == 3) 
 		num1 = num1 * num2;
-	if (iDeistvie == 4) 
-		num1 = num1 / num2;
-	
+	if (iDeistvie == 4)
+	{
+		if (num2 == 0)
+		{
+			AfxMessageBox(L"Тупица на ноль не деится!");
+		}
+		else
+		{
+			num1 = num1 / num2;
+		}
+	}
 
 	sVvod.Format(L"%g", num1);
 	_Edit.SetWindowTextW(sVvod);
@@ -392,8 +446,13 @@ void CLimCalcDlg::Clear()
 
 
 void CLimCalcDlg::Clean()
-{	
-
+{
+	sVvod.Delete(sVvod.GetLength() - 1, 1);
+	if (sVvod.GetLength() == 0)
+	{
+		sVvod = L"0";
+	}
+	_Edit.SetWindowTextW(sVvod);
 }
 
 
